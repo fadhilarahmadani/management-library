@@ -1,66 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Management Library (Manajemen Perpustakaan Sederhana)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sebuah aplikasi manajemen perpustakaan sederhana dibangun dengan Laravel 10 untuk kebutuhan pengelolaan koleksi buku, peminjaman, dan anggota. Cocok sebagai proyek demo, tugas akhir, atau basis yang bisa dikembangkan untuk sistem perpustakaan kecil sampai menengah.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Ringkasan singkat
+Aplikasi ini adalah skeleton Laravel yang sudah disiapkan untuk fitur manajemen perpustakaan: operasi CRUD pada buku dan anggota, proses peminjaman/pengembalian, serta antarmuka berbasis Vite. Target pengguna: pengembang yang ingin menjalankan atau mengembangkan sistem manajemen perpustakaan berbasis Laravel.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Stack
+- Language(s): PHP (Laravel) dan JavaScript (Vite)
+- Framework / runtime: Laravel 10 + Vite (asset bundling)
+- Notable libraries (dari composer.json):
+  - laravel/framework (^10.10)
+  - laravel/sanctum (auth / API token)
+  - realrashid/sweet-alert (alert UI)
+  - guzzlehttp/guzzle (HTTP client)
+  - PHPUnit, Faker (testing & seeding)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+License: MIT (lihat composer.json)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Struktur top-level (apa yang ada di repo)
+Berikut file/entri top-level yang ada sekarang:
+- .editorconfig
+- .env
+- .env.example
+- README.md
+- artisan
+- composer.json
+- composer.lock
+- package.json
+- package-lock.json
+- phpunit.xml
+- vite.config.js
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Catatan: composer.json mengarahkan autoload ke direktori `app/`, `database/factories/`, `database/seeders/` dan `tests/`, sehingga kode aplikasi normalnya berada di direktori tersebut (jika belum muncul di repo, pastikan semua file/direktori proyek dilacak di Git).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Bagaimana bagian-bagian bekerja bersama:**  
+Aplikasi adalah Laravel monolitik: request → route → controller (app/) → model (Eloquent) → views atau API. Asset front-end dikelola via Vite (package.json + vite.config.js).
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Fitur (yang biasanya diharapkan dari project ini)
+- Autentikasi / otorisasi dasar (Laravel Sanctum tersedia untuk API)
+- CRUD Buku (title, author, isbn, stok, dst.)
+- CRUD Anggota
+- Proses Peminjaman & Pengembalian
+- Notifikasi sederhana / alert UI (SweetAlert)
+- Seeder & Factory untuk data contoh (faker)
 
-### Premium Partners
+(Implementasi aktual fitur bergantung pada isi folder `app/`/`routes/`/`database/` — jika belum ada, fitur ini adalah blueprint yang perlu diimplementasikan.)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+## Persyaratan
+- PHP >= 8.1
+- Composer
+- MySQL atau MariaDB (sesuaikan DB_* di .env)
+- Node.js & npm (untuk asset, Vite)
+- (Opsional) Docker & Laravel Sail jika ingin menjalankan container
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Cara menjalankan (dari clone kosong → lokal)
+Jalankan perintah berikut di terminal:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Clone repo
+   ```bash
+   git clone https://github.com/fadhilarahmadani/management-library.git
+   cd management-library
